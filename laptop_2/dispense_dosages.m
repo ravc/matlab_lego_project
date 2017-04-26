@@ -1,8 +1,7 @@
 function dispense_dosages(ev3,barcode,color,finger,trackMotor)
 dosage = barcode_reader(ev3,barcode,color);
-%[hdpe,steel,small blue, large blue, small red, large red, small white,large white, trash]
-%[SW, LW, SR, LR, SB, LB, Steel, HDPE]
-dosage = [1 1 0 1 1 2 0 0];
+%[hdpe,steel,small blue, large blue, small red, large red, small white,large white, trash] the order on the track
+%[SW, LW, SR, LR, SB, LB, Steel, HDPE] the corresponding values from barcode_reader.m
 system('git pull https://github.com/ravc/matlab_lego_project.git');
 while exist('data.txt','file') == 0
     pause(10)
