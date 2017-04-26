@@ -19,18 +19,13 @@ function DOSAGE = barcode_reader(ev3, barcodeMotor, color)
             while numBarcodes < 4
                 % reads first black stripe
                 if strcmp(readColor(color),'black') == 1
-                    %%%%%barcodeMotor.Speed = 0;
                     stop(barcodeMotor, 1);
                     % read barcode
                     resetRotation(barcodeMotor);
                     pause(1)
-                    %%%%%barcodeMotor.Speed = speed;
                     start(barcodeMotor);
                     while length(code) <= 7
                         if (readRotation(barcodeMotor) >= 52)
-    %                         barcodeMotor.Speed = -2;
-    %                         pause(.05)
-    %                         barcodeMotor.Speed = 0;
                             stop(barcodeMotor, 1);
                             pause(.5)
                             if strcmp(readColor(color),'black') == 1
@@ -40,7 +35,6 @@ function DOSAGE = barcode_reader(ev3, barcodeMotor, color)
                             end
                             pause(.5)
                             resetRotation(barcodeMotor);
-                            %%%%%%barcodeMotor.Speed = speed;
                             start(barcodeMotor);
                         end
                     end
@@ -54,9 +48,6 @@ function DOSAGE = barcode_reader(ev3, barcodeMotor, color)
                     % display results on ev3
                     clearLCD(ev3)
                     writeLCD(ev3,code_no,3,6)
-                    %writeLCD(ev3, new_string{1},5,1)
-                    %writeLCD(ev3, new_string{2},6,1)
-                    %writeLCD(ev3, 'marble(s)',7,1)
                     code = [];
                     numBarcodes = numBarcodes + 1;
                 end
